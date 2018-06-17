@@ -1,4 +1,4 @@
-###Arch Setup 是新一代的Arch Linux安装脚本,下面教大家如何使用。
+### Arch Setup 是新一代的Arch Linux安装脚本,下面教大家如何使用。
 首先，里面有一个PYTHON文件叫archsetuprc.py,一定要修改他才能使用Arch Setup。下面修改：
 >nano archsetuprc.py
 
