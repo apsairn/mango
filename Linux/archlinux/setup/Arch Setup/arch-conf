@@ -1,0 +1,36 @@
+#!/usr/bin/python
+import os
+os.system(r"ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime")
+os.system("hwclock --systohc")
+os.system(r"echo zh_CN.UTF-8 UTF-8 >> /etc/locale.gen")
+os.system("locale-gen")
+os.system(r"echo LANG=zh_CN.UTF-8 >> /etc/locale.conf")
+os.system("pacman -S grub efibootmgr network-manager-applet")
+os.system("systemctl enable gdm")
+os.system("systemctl enable sddm")
+os.system("echo Arch >> /etc/hostname")
+os.system("passwd")
+os.system("useradd -m archsetup")
+a=input("你的CPU是Intel的CPU莫?[y/n]")
+if a=="y":
+	os.system("pacman -S intel-ucode")
+else:
+	print("没事了。")
+
+b=input("你使用传统BIOS?")
+if b=="y":
+	print("即将安装GRUB in BIOS...")
+	os.system("grub-install --target=i386-pc /dev/sda")
+	os.system("grub-mkconfig -o /boot/grub/grub.cfg")
+else:
+	print("安装GRUB in UEFI Firmware...")
+	os.system("grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch")
+	os.system("grub-mkconfig -o /boot/grub/grub.cfg")
+os.system("echo [archlinuxcn] >> /etc/pacman.conf")
+os.system(r"echo Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch >> /etc/pacman.conf")
+os.system("echo SigLevel = Optional TrustAll >> /etc/pacman.conf")
+os.system("pacman -S yaourt")
+os.system("yaourt -S paper-icon-theme-git paper-gtk-theme-git gnome-tweak-tool")
+os.system("systemctl enable NetworkManager")
+print("完毕!有了Paper主题!")
+

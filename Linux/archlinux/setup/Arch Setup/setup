@@ -1,0 +1,12 @@
+#!/usr/bin/python
+from libarch import *
+import os
+import archsetuprc
+print("欢迎使用Arch Setup 脚本！")
+ul()
+part()
+base_inst()
+de()
+genfstab()
+conf()
+hook()
